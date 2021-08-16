@@ -1,9 +1,8 @@
-/** \example array_queue/sample_array_queue5.cpp
- * This is an example of how to use the Queue class.
- */
 // Queue::size
 #include <iostream>         // std::cout
 #include "Queue.hpp"   // Queue
+
+using namespace mini_algo;
 
 int main ()
 {
