@@ -1,6 +1,6 @@
 // stack::top
 #include <iostream>     // std::cout
-#include "Stack.hpp"    // stack
+#include "stack.hpp"    // stack
 
 using namespace mini_algo;
 
@@ -8,12 +8,12 @@ int main ()
 {
   Stack<int,100> mystack;
 
-  mystack.push(10);
-  mystack.push(20);
+  mystack.Push(10);
+  mystack.Push(20);
 
-  mystack.top() -= 5;
+  mystack.Top() -= 5;
 
-  std::cout << "mystack.top() is now " << mystack.top() << '\n';
+  std::cout << "mystack.Top() is now " << mystack.Top() << '\n';
 
   return 0;
 }

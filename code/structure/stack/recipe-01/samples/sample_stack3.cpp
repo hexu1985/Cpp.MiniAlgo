@@ -1,6 +1,6 @@
 // stack::push/pop
 #include <iostream>     // std::cout
-#include "Stack.hpp"    // stack
+#include "stack.hpp"    // stack
 
 using namespace mini_algo;
 
@@ -8,13 +8,13 @@ int main ()
 {
   Stack<int,100> mystack;
 
-  for (int i=0; i<5; ++i) mystack.push(i);
+  for (int i=0; i<5; ++i) mystack.Push(i);
 
   std::cout << "Popping out elements...";
-  while (!mystack.isEmpty())
+  while (!mystack.IsEmpty())
   {
-     std::cout << ' ' << mystack.top();
-     mystack.pop();
+     std::cout << ' ' << mystack.Top();
+     mystack.Pop();
   }
   std::cout << '\n';
 

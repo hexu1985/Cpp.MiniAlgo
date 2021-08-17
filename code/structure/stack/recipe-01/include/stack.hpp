@@ -1,5 +1,5 @@
 /**
- * @file Stack.hpp
+ * @file stack.hpp
  * @brief 数组实现的栈
  * @author hexu_1985@sina.com
  * @version 1.0
@@ -22,15 +22,15 @@ template <typename Item, size_t maxN>
 class Stack {
 // 索引:   [0][1][2]...[7][8][9]...[N-1][N]
 // 数组:   [x][x][x]...[x][x][x]...[xxx]
-//                         ^_top
+//                         ^top
 private:
     Item A[maxN];   // 数组空间, A[0], ..., A[N-1]
-    int _top;       // 栈顶下标, 指向栈顶元素的下一个位置
+    int top;        // 栈顶下标, 指向栈顶元素的下一个位置
     int N;          // 栈大小
 
 private:
-    Stack(const Stack &) = delete;
-    Stack &operator =(const Stack &) = delete;
+    Stack(const Stack&) = delete;
+    Stack& operator=(const Stack&) = delete;
 
 public:
     /**
@@ -41,7 +41,7 @@ public:
     Stack()
     {
         N = maxN;
-        _top = 0;
+        top = 0;
     }
 
     /**
@@ -56,9 +56,9 @@ public:
      *
      * @return 当前栈大小
      */
-    size_t size() const
+    size_t Size() const
     {
-        return _top;
+        return top;
     }
 
     /**
@@ -66,7 +66,7 @@ public:
      *
      * @return 栈容量
      */
-    size_t capacity() const
+    size_t Capacity() const
     {
         return N;
     }
@@ -76,9 +76,9 @@ public:
      *
      * @return 栈为空返回true, 否则返回false
      */
-    bool isEmpty() const
+    bool IsEmpty() const
     {
-        return _top == 0;
+        return top == 0;
     }
 
     /**
@@ -86,9 +86,9 @@ public:
      *
      * @return 如果栈已满返回true, 否则返回false
      */
-    bool isFull() const
+    bool IsFull() const
     {
-        return _top == N;
+        return top == N;
     }
 
     /**
@@ -96,9 +96,9 @@ public:
      *
      * @param item 被放入的元素值
      */
-    void push(const Item &item)
+    void Push(const Item& item)
     {
-        A[_top++] = item;
+        A[top++] = item;
     }
 
     /**
@@ -106,9 +106,9 @@ public:
      *
      * @return 栈顶首的元素值
      */
-    Item pop()
+    Item Pop()
     {
-        return A[--_top];
+        return A[--top];
     }
 
     /**
@@ -116,9 +116,9 @@ public:
      *
      * @return 栈顶元素值的引用
      */
-    Item &top()
+    Item& Top()
     {
-        return A[_top-1];
+        return A[top-1];
     }
 
     /**
@@ -126,9 +126,9 @@ public:
      *
      * @return 栈顶元素值的常引用
      */
-    const Item &top() const
+    const Item& Top() const
     {
-        return A[_top-1];
+        return A[top-1];
     }
 };
 

@@ -1,6 +1,6 @@
 // stack::empty
 #include <iostream>     // std::cout
-#include "Stack.hpp"    // stack
+#include "stack.hpp"    // stack
 
 using namespace mini_algo;
 
@@ -9,12 +9,12 @@ int main ()
   Stack<int,100> mystack;
   int sum (0);
 
-  for (int i=1;i<=10;i++) mystack.push(i);
+  for (int i=1;i<=10;i++) mystack.Push(i);
 
-  while (!mystack.isEmpty())
+  while (!mystack.IsEmpty())
   {
-     sum += mystack.top();
-     mystack.pop();
+     sum += mystack.Top();
+     mystack.Pop();
   }
 
   std::cout << "total: " << sum << '\n';
