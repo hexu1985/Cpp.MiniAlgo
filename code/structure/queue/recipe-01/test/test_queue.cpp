@@ -2,7 +2,7 @@
 #include <iostream>
 #include <gtest/gtest.h>
 
-#include "Queue.hpp"
+#include "queue.hpp"
 
 using namespace std;
 using namespace mini_algo;
@@ -10,44 +10,44 @@ using namespace mini_algo;
 TEST(QueueTest, Methods) {
 	Queue<int, 100> queue1;
 
-	EXPECT_TRUE(queue1.isEmpty());
-	EXPECT_FALSE(queue1.isFull());
-	EXPECT_EQ(0, queue1.size());
-	EXPECT_EQ(100, queue1.capacity());
+	EXPECT_TRUE(queue1.IsEmpty());
+	EXPECT_FALSE(queue1.IsFull());
+	EXPECT_EQ(0, queue1.Size());
+	EXPECT_EQ(100, queue1.Capacity());
 
 	// 测试enqueue
 	for (int i = 0; i < 5; ++i)
-		queue1.push(i);
+		queue1.Push(i);
 
-	cout << "queue1.size(): " << queue1.size() << endl;
-	cout << "queue1.capacity(): " << queue1.capacity() << endl;
-	cout << "queue1.front(): " << queue1.front() << endl;
-	cout << "queue1.back(): " << queue1.back() << endl;
+	cout << "queue1.Size(): " << queue1.Size() << endl;
+	cout << "queue1.Capacity(): " << queue1.Capacity() << endl;
+	cout << "queue1.Front(): " << queue1.Front() << endl;
+	cout << "queue1.Back(): " << queue1.Back() << endl;
 
-	EXPECT_FALSE(queue1.isEmpty());
-	EXPECT_FALSE(queue1.isFull());
-	EXPECT_EQ(5, queue1.size());
-	EXPECT_EQ(0, queue1.front());
-	EXPECT_EQ(4, queue1.back());
+	EXPECT_FALSE(queue1.IsEmpty());
+	EXPECT_FALSE(queue1.IsFull());
+	EXPECT_EQ(5, queue1.Size());
+	EXPECT_EQ(0, queue1.Front());
+	EXPECT_EQ(4, queue1.Back());
 
 	// 测试dequeue
-	while (!queue1.isEmpty()) {
-		cout << ' ' << queue1.pop();
+	while (!queue1.IsEmpty()) {
+		cout << ' ' << queue1.Pop();
 	}
 	cout << endl;
 
     int n = 0;
-    while (!queue1.isFull()) {
-        queue1.push(++n);
+    while (!queue1.IsFull()) {
+        queue1.Push(++n);
     }
 
     int sum = 0;
-    while (!queue1.isEmpty()) {
-        sum += queue1.pop();
+    while (!queue1.IsEmpty()) {
+        sum += queue1.Pop();
     }
     cout << "sum: " << sum << endl;
 
-	cout << "queue1.size(): " << queue1.size() << endl;
-	cout << "queue1.capacity(): " << queue1.capacity() << endl;
+	cout << "queue1.Size(): " << queue1.Size() << endl;
+	cout << "queue1.Capacity(): " << queue1.Capacity() << endl;
 }
 
