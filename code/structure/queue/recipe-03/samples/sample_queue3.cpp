@@ -1,6 +1,6 @@
 // Queue::push/pop
 #include <iostream>         // std::cin, std::cout
-#include "Queue.hpp"   // Queue
+#include "queue.hpp"   // Queue
 
 using namespace mini_algo;
 
@@ -13,14 +13,14 @@ int main ()
 
   do {
     std::cin >> myint;
-    myqueue.push (myint);
+    myqueue.Push (myint);
   } while (myint);
 
   std::cout << "myqueue contains: ";
-  while (!myqueue.isEmpty())
+  while (!myqueue.IsEmpty())
   {
-    std::cout << ' ' << myqueue.front();
-    myqueue.pop();
+    std::cout << ' ' << myqueue.Front();
+    myqueue.Pop();
   }
   std::cout << '\n';
 

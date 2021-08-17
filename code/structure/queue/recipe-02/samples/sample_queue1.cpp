@@ -1,6 +1,6 @@
 #include <assert.h>
 #include <iostream>
-#include "Queue.hpp"
+#include "queue.hpp"
 
 using namespace mini_algo;
 using namespace std;
@@ -9,45 +9,34 @@ int main()
 {
 	Queue<int> queue1(100);
 
-	assert(queue1.isEmpty());
-	assert(!queue1.isFull());
-	assert(queue1.size() == 0);
-	assert(queue1.capacity() == 100);
-
 	// 测试enqueue
 	for (int i = 0; i < 5; ++i)
-		queue1.push(i);
+		queue1.Push(i);
 
-	cout << "queue1.size(): " << queue1.size() << endl;
-	cout << "queue1.capacity(): " << queue1.capacity() << endl;
-	cout << "queue1.front(): " << queue1.front() << endl;
-	cout << "queue1.back(): " << queue1.back() << endl;
-
-	assert(!queue1.isEmpty());
-	assert(!queue1.isFull());
-	assert(queue1.size() == 5);
-	assert(queue1.front() == 0);
-	assert(queue1.back() == 4);
+	cout << "queue1.Size(): " << queue1.Size() << endl;
+	cout << "queue1.Capacity(): " << queue1.Capacity() << endl;
+	cout << "queue1.Front(): " << queue1.Front() << endl;
+	cout << "queue1.Back(): " << queue1.Back() << endl;
 
 	// 测试dequeue
-	while (!queue1.isEmpty()) {
-		cout << ' ' << queue1.pop();
+	while (!queue1.IsEmpty()) {
+		cout << ' ' << queue1.Pop();
 	}
 	cout << endl;
 
     int n = 0;
-    while (!queue1.isFull()) {
-        queue1.push(++n);
+    while (!queue1.IsFull()) {
+        queue1.Push(++n);
     }
 
     int sum = 0;
-    while (!queue1.isEmpty()) {
-        sum += queue1.pop();
+    while (!queue1.IsEmpty()) {
+        sum += queue1.Pop();
     }
     cout << "sum: " << sum << endl;
 
-	cout << "queue1.size(): " << queue1.size() << endl;
-	cout << "queue1.capacity(): " << queue1.capacity() << endl;
+	cout << "queue1.Size(): " << queue1.Size() << endl;
+	cout << "queue1.Capacity(): " << queue1.Capacity() << endl;
 
 	return 0;
 }

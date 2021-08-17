@@ -1,5 +1,5 @@
 /**
- * @file Queue.hpp
+ * @file queue.hpp
  * @brief 链表实现的队列
  * @author hexu_1985@sina.com
  * @version 1.0
@@ -29,13 +29,13 @@ private:
         Node(): prev(nullptr), next(nullptr), item() {} 
         Node(const Item& item_): prev(nullptr), next(nullptr), item(item_) {}
 
-        Node *prev;
-        Node *next;
+        Node* prev;
+        Node* next;
         Item item;
     };
 
 private:
-    Node *nil;
+    Node* nil;
 
 private:
     Queue(const Queue&) = delete;
@@ -65,9 +65,9 @@ public:
      */
     ~Queue()
     {
-        Node *node = nil->next;
+        Node* node = nil->next;
         while (node != nil) {
-            Node *next = node->next;
+            Node* next = node->next;
             delete node;
             node = next;
         }
@@ -79,9 +79,9 @@ public:
      *
      * @return 当前队列大小
      */
-    int size() const
+    int Size() const
     {
-        Node *node = nil->next;
+        Node* node = nil->next;
         int n = 0;
         while (node != nil) {
             node = node->next;
@@ -95,7 +95,7 @@ public:
      *
      * @return 队列为空返回true, 否则返回false
      */
-    bool isEmpty() const
+    bool IsEmpty() const
     { 
         return nil->next == nil;
     }
@@ -105,7 +105,7 @@ public:
      *
      * @param item 被放入的元素值
      */
-    void push(const Item& item)
+    void Push(const Item& item)
     {
         /**
          * 在链表的nil节点前插入node节点
@@ -136,7 +136,7 @@ public:
          *             '---|___|<----'
          *                   ^-node
          */
-        Node *node = new Node(item);
+        Node* node = new Node(item);
         node->prev = nil->prev;
         node->next = nil;
         nil->prev->next = node;
@@ -148,9 +148,9 @@ public:
      *
      * @return 队列首的元素值
      */
-    Item pop()
+    Item Pop()
     {
-        if (isEmpty()) {
+        if (IsEmpty()) {
             return nil->item;
         }
 
@@ -170,7 +170,7 @@ public:
          *             |                    |(2)
          *             '--------------------'
          */
-        Node *node = nil->next;
+        Node* node = nil->next;
         Item item = node->item;
         node->prev->next = node->next;
         node->next->prev = node->prev;
@@ -183,9 +183,9 @@ public:
      *
      * @param item 队列首的元素值存入item里
      */
-    void pop(Item& item)
+    void Pop(Item& item)
     {
-        item = pop();
+        item = Pop();
     }
 
     /**
@@ -193,7 +193,7 @@ public:
      *
      * @return 队首元素值的引用
      */
-    Item& front()
+    Item& Front()
     {
         return nil->next->item;
     }
@@ -203,7 +203,7 @@ public:
      *
      * @return 队首元素值的常引用
      */
-    const Item& front() const
+    const Item& Front() const
     {
         return nil->next->item;
     }
@@ -213,7 +213,7 @@ public:
      *
      * @return 队尾元素的引用
      */
-    Item& back()
+    Item& Back()
     {
         return nil->prev->item;
     }
@@ -223,7 +223,7 @@ public:
      *
      * @return 队尾元素的常引用
      */
-    const Item& back() const
+    const Item& Back() const
     {
         return nil->prev->item;
     }

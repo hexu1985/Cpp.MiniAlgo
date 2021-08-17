@@ -1,5 +1,5 @@
 /**
- * @file Queue.hpp
+ * @file queue.hpp
  * @brief 数组实现的队列
  * @author hexu_1985@sina.com
  * @version 1.0
@@ -60,7 +60,7 @@ public:
      *
      * @return 当前队列大小
      */
-    int size() const
+    int Size() const
     {
         return (tail-head+N) % N;
     }
@@ -70,7 +70,7 @@ public:
      *
      * @return 队列容量
      */
-    int capacity() const
+    int Capacity() const
     {
         return N-1;
     }
@@ -80,7 +80,7 @@ public:
      *
      * @return 队列为空返回true, 否则返回false
      */
-    bool isEmpty() const
+    bool IsEmpty() const
     { 
         return (head%N) == tail;
     }
@@ -90,7 +90,7 @@ public:
      *
      * @return 如果队列已满返回true, 否则返回false
      */
-    bool isFull() const
+    bool IsFull() const
     {
         return (tail+1) == head;
     }
@@ -100,7 +100,7 @@ public:
      *
      * @param item 被放入的元素值
      */
-    void push(const Item& item)
+    void Push(const Item& item)
     { 
         A[tail++] = item; 
         tail = tail % N; 
@@ -111,7 +111,7 @@ public:
      *
      * @return 队列首的元素值
      */
-    Item pop()
+    Item Pop()
     { 
         head = head % N; 
         return A[head++]; 
@@ -122,7 +122,7 @@ public:
      *
      * @param item 队列首的元素值存入item里
      */
-    void pop(Item& item)
+    void Pop(Item& item)
     {
         head = head % N; 
         item = A[head++];
@@ -133,7 +133,7 @@ public:
      *
      * @return 队首元素值的引用
      */
-    Item& front()
+    Item& Front()
     {
         return A[head%N];           // head == N ? A[0] : A[head]
     }
@@ -143,7 +143,7 @@ public:
      *
      * @return 队首元素值的常引用
      */
-    const Item& front() const
+    const Item& Front() const
     {
         return A[head%N];           // head == N ? A[0] : A[head]
     }
@@ -153,7 +153,7 @@ public:
      *
      * @return 队尾元素的引用
      */
-    Item& back()
+    Item& Back()
     {
         return A[(tail-1+N)%N];     // tail == 0 ? A[N-1] : A[tail-1];
     }
@@ -163,7 +163,7 @@ public:
      *
      * @return 队尾元素的常引用
      */
-    const Item& back() const
+    const Item& Back() const
     {
         return A[(tail-1+N)%N];     // tail == 0 ? A[N-1] : A[tail-1];
     }

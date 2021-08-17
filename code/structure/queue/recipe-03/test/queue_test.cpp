@@ -1,13 +1,17 @@
 #include <assert.h>
 #include <iostream>
+#include <gtest/gtest.h>
+
 #include "queue.hpp"
 
 using namespace std;
 using namespace mini_algo;
 
-int main()
-{
+TEST(QueueTest, Methods) {
 	Queue<int> queue1;
+
+	EXPECT_TRUE(queue1.IsEmpty());
+	EXPECT_EQ(0, queue1.Size());
 
 	// 测试enqueue
 	for (int i = 0; i < 5; ++i)
@@ -16,6 +20,11 @@ int main()
 	cout << "queue1.Size(): " << queue1.Size() << endl;
 	cout << "queue1.Front(): " << queue1.Front() << endl;
 	cout << "queue1.Back(): " << queue1.Back() << endl;
+
+	EXPECT_FALSE(queue1.IsEmpty());
+	EXPECT_EQ(5, queue1.Size());
+	EXPECT_EQ(0, queue1.Front());
+	EXPECT_EQ(4, queue1.Back());
 
 	// 测试dequeue
 	while (!queue1.IsEmpty()) {
@@ -35,7 +44,5 @@ int main()
     cout << "sum: " << sum << endl;
 
 	cout << "queue1.Size(): " << queue1.Size() << endl;
-
-	return 0;
 }
 

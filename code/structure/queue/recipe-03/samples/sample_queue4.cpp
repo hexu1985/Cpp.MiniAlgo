@@ -1,6 +1,6 @@
 // Queue::front
 #include <iostream>         // std::cout
-#include "Queue.hpp"   // Queue
+#include "queue.hpp"   // Queue
 
 using namespace mini_algo;
 
@@ -8,12 +8,12 @@ int main ()
 {
   Queue<int> myqueue;
 
-  myqueue.push(77);
-  myqueue.push(16);
+  myqueue.Push(77);
+  myqueue.Push(16);
 
-  myqueue.front() -= myqueue.back();    // 77-16=61
+  myqueue.Front() -= myqueue.Back();    // 77-16=61
 
-  std::cout << "myqueue.front() is now " << myqueue.front() << '\n';
+  std::cout << "myqueue.Front() is now " << myqueue.Front() << '\n';
 
   return 0;
 }
