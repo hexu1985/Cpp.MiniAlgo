@@ -30,8 +30,8 @@ private:
     int tail;   // 队尾元素的下一个位置的下标, tail的取值范围[0, N-1]
 
 private:
-    Queue(const Queue &) = delete;
-    Queue &operator =(const Queue &) = delete;
+    Queue(const Queue&) = delete;
+    Queue& operator=(const Queue&) = delete;
 
 public:
     /**
@@ -100,7 +100,7 @@ public:
      *
      * @param item 被放入的元素值
      */
-    void push(const Item &item)
+    void push(const Item& item)
     { 
         A[tail++] = item; 
         tail = tail % N; 
@@ -122,7 +122,7 @@ public:
      *
      * @param item 队列首的元素值存入item里
      */
-    void pop(Item &item)
+    void pop(Item& item)
     {
         head = head % N; 
         item = A[head++];
@@ -133,7 +133,7 @@ public:
      *
      * @return 队首元素值的引用
      */
-    Item &front()
+    Item& front()
     {
         return A[head%N];           // head == N ? A[0] : A[head]
     }
@@ -143,7 +143,7 @@ public:
      *
      * @return 队首元素值的常引用
      */
-    const Item &front() const
+    const Item& front() const
     {
         return A[head%N];           // head == N ? A[0] : A[head]
     }
@@ -153,7 +153,7 @@ public:
      *
      * @return 队尾元素的引用
      */
-    Item &back()
+    Item& back()
     {
         return A[(tail-1+N)%N];     // tail == 0 ? A[N-1] : A[tail-1];
     }
@@ -163,7 +163,7 @@ public:
      *
      * @return 队尾元素的常引用
      */
-    const Item &back() const
+    const Item& back() const
     {
         return A[(tail-1+N)%N];     // tail == 0 ? A[N-1] : A[tail-1];
     }

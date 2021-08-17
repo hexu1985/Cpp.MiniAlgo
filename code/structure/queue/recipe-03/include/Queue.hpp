@@ -27,7 +27,7 @@ private:
      */
     struct Node {
         Node(): prev(nullptr), next(nullptr), item() {} 
-        Node(const Item &item_): prev(nullptr), next(nullptr), item(item_) {}
+        Node(const Item& item_): prev(nullptr), next(nullptr), item(item_) {}
 
         Node *prev;
         Node *next;
@@ -38,8 +38,8 @@ private:
     Node *nil;
 
 private:
-    Queue(const Queue &) = delete;
-    Queue &operator =(const Queue &) = delete;
+    Queue(const Queue&) = delete;
+    Queue& operator=(const Queue&) = delete;
 
 public:
     /**
@@ -105,7 +105,7 @@ public:
      *
      * @param item 被放入的元素值
      */
-    void push(const Item &item)
+    void push(const Item& item)
     {
         /**
          * 在链表的nil节点前插入node节点
@@ -183,7 +183,7 @@ public:
      *
      * @param item 队列首的元素值存入item里
      */
-    void pop(Item &item)
+    void pop(Item& item)
     {
         item = pop();
     }
@@ -193,7 +193,7 @@ public:
      *
      * @return 队首元素值的引用
      */
-    Item &front()
+    Item& front()
     {
         return nil->next->item;
     }
@@ -203,7 +203,7 @@ public:
      *
      * @return 队首元素值的常引用
      */
-    const Item &front() const
+    const Item& front() const
     {
         return nil->next->item;
     }
@@ -213,7 +213,7 @@ public:
      *
      * @return 队尾元素的引用
      */
-    Item &back()
+    Item& back()
     {
         return nil->prev->item;
     }
@@ -223,7 +223,7 @@ public:
      *
      * @return 队尾元素的常引用
      */
-    const Item &back() const
+    const Item& back() const
     {
         return nil->prev->item;
     }
