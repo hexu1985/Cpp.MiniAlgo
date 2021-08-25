@@ -1,12 +1,12 @@
 /**
- * @file dense_graph_io.hpp
+ * @file graph_io.hpp
  * @brief 稠密图的输入输出运算符重载
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-05-19
  */
-#ifndef MINI_ALGO_DENSE_GRAPH_IO_INC
-#define MINI_ALGO_DENSE_GRAPH_IO_INC
+#ifndef MINI_ALGO_GRAPH_IO_INC
+#define MINI_ALGO_GRAPH_IO_INC
 
 #include <cmath>
 #include <iostream>

@@ -3,7 +3,7 @@
  */
 #include <vector>
 #include "dense_graph.hpp"
-#include "dense_graph_io.hpp"
+#include "graph_io.hpp"
 
 using namespace std;
 using namespace mini_algo;

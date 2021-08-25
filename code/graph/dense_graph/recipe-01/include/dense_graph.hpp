@@ -13,16 +13,9 @@
 #include <tuple>
 #include <vector>
 #include <memory>
+#include "edge.hpp"
 
 namespace mini_algo {
-
-/**
- * @brief 边类型
- */
-struct Edge {
-    int v, w;
-    Edge(int v = -1, int w = -1): v(v), w(w) {}
-};
 
 /**
  * @brief 一个稠密图实现, 基于邻接矩阵(不支持平行边)
