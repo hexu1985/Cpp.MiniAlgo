@@ -5,8 +5,8 @@
  * @version 1.0
  * @date 2020-05-19
  */
-#ifndef MINI_ALGO_GRAPH_DOT_INC
-#define MINI_ALGO_GRAPH_DOT_INC
+#ifndef MINI_ALGO_GRAPH_DOT_VLABEL_INC
+#define MINI_ALGO_GRAPH_DOT_VLABEL_INC
 
 #include <iostream>
 #include <string>
@@ -23,8 +23,8 @@ namespace mini_algo {
  * @param strm 输出流
  * @param graph 指定图
  */
-template <typename charT, typename traits, typename Graph>
-void WriteDot(std::basic_ostream<charT, traits>& strm, const Graph& graph)
+template <typename charT, typename traits, typename Graph, typename VLabelMap>
+void WriteDot(std::basic_ostream<charT, traits>& strm, const Graph& graph, const VLabelMap& vlabel_map)
 {
     bool is_digraph = graph.Directed();
     std::string title = is_digraph ? "digraph G" : "graph G";
@@ -34,7 +34,8 @@ void WriteDot(std::basic_ostream<charT, traits>& strm, const Graph& graph)
 
     // 打印点集
     for (int v = 0; v < graph.V(); v++) {
-        strm << "\t" << v << ";\n";
+        strm << "\t" << v 
+            << " [label = " << vlabel_map[v] << "]" << ";\n";
     }
 
     // 打印边集
@@ -52,8 +53,8 @@ void WriteDot(std::basic_ostream<charT, traits>& strm, const Graph& graph)
  *
  * @return DOT语义格式字符串
  */
-template <typename Graph>
-std::string ToDotStr(const Graph& graph)
+template <typename Graph, typename VLabelMap>
+std::string ToDotStr(const Graph& graph, const VLabelMap& vlabel_map)
 {
     std::ostringstream os;
     WriteDot(os, graph);
@@ -68,13 +69,13 @@ std::string ToDotStr(const Graph& graph)
  *
  * @return 如果写入成功, 返回true, 否则返回false
  */
-template <typename Graph>
-bool WriteDotFile(const std::string& dot_file_path, const Graph& graph) {
+template <typename Graph, typename VLabelMap>
+bool WriteDotFile(const std::string& dot_file_path, const Graph& graph, const VLabelMap& vlabel_map) {
     std::ofstream ofile(dot_file_path, std::ios::out | std::ios::trunc);
     if (!ofile) {
         return false;
     }
-    WriteDot(ofile, graph);
+    WriteDot(ofile, graph, vlabel_map);
     return true;
 }
 

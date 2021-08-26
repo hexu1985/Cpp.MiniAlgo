@@ -1,15 +1,19 @@
-/** \example sample_unweight_dense_graph1.cpp
- * This is an example of how to use the unweight::dense_graph class.
- */
 #include <vector>
+#include <string>
+#include <iostream>
 #include "dense_graph.hpp"
-#include "graph_io.hpp"
+#include "graph_dot.hpp"
 
 using namespace std;
 using namespace mini_algo;
 
-int main()
+int main(int argc, char *argv[])
 {
+    string dot_file = "dense_digraph.dot";
+    if (argc >= 2) {
+        dot_file = argv[1];
+    }
+
     int vertex_number = 13;
     vector<Edge> edges = {
         {4,2}, {2,3}, {3,2}, {0,6}, {0,1},
@@ -27,18 +31,18 @@ int main()
     // show edges
     cout << digraph.E() << " edges in graph" << endl;
 
-    // show adjLists
-    cout << "graph after insert edges:\n" << digraph << endl;
+    cout << "graph to dot format:\n"
+        << ToDotStr(digraph)
+        << endl;
 
-    cout << "remove edges\n";
-    for (auto edge: edges)
-        digraph.Remove(edge);
+    // save dot file
+    cout << "save graph to " << dot_file << " ...\n";
+    if (!WriteDotFile(dot_file, digraph)) {
+        cout << "write dot file " << dot_file << " failed!\n";
+        exit(1);
+    }
 
-    // show edges
-    cout << digraph.E() << " edges in graph" << endl;
-
-    // show adjLists
-    cout << "graph after remove edges:\n" << digraph << endl;
+    cout << "write dot file success!" << endl;
 
     return 0;
 }
