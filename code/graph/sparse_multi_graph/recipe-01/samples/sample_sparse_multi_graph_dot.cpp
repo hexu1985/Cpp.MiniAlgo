@@ -1,7 +1,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include "dense_graph.hpp"
+#include "sparse_multi_graph.hpp"
 #include "graph_dot.hpp"
 
 using namespace std;
@@ -9,7 +9,7 @@ using namespace mini_algo;
 
 int main(int argc, char *argv[])
 {
-    string dot_file = "dense_graph.dot";
+    string dot_file = "sparse_multi_graph.dot";
     if (argc >= 2) {
         dot_file = argv[1];
     }
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     int vertex_number = 8;
     vector<Edge> edges = {{0,2}, {0,5}, {0,7}, {1,7}, {2,6}, {3,4}, {3,5}, {4,5}, {4,6}, {4,7}};
 
-    DenseGraph graph(vertex_number, false);
+    SparseMultiGraph graph(vertex_number, false);
 
     cout << "insert edges\n";
     for (auto edge: edges)
