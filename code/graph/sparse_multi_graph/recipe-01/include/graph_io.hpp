@@ -1,6 +1,6 @@
 /**
  * @file graph_io.hpp
- * @brief 稠密图的输入输出运算符重载
+ * @brief 无权重图的输入输出运算符重载
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-05-19
@@ -15,10 +15,10 @@
 namespace mini_algo {
 
 /**
- * @brief 稠密图的输出运算符重载
+ * @brief 无权重图的输出运算符重载
  *
  * @param strm 输出流
- * @param graph 稠密图
+ * @param graph 无权重图
  *
  * @return 输出流
  */

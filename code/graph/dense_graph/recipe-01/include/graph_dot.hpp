@@ -1,6 +1,6 @@
 /**
  * @file graph_dot.hpp
- * @brief 将稠密图转成dot格式
+ * @brief 将无权重图转成dot格式
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-05-19
@@ -18,7 +18,7 @@
 namespace mini_algo {
 
 /**
- * @brief 将稠密图转成DOT语言格式, 写入指定输出流
+ * @brief 将无权重图转成DOT语言格式, 写入指定输出流
  *
  * @param strm 输出流
  * @param graph 指定图
@@ -46,7 +46,7 @@ void WriteDot(std::basic_ostream<charT, traits>& strm, const Graph& graph)
 }
 
 /**
- * @brief 将稠密图转成DOT语言格式字符串
+ * @brief 将无权重图转成DOT语言格式字符串
  *
  * @param graph 指定图
  *
@@ -61,7 +61,7 @@ std::string ToDotStr(const Graph& graph)
 }
 
 /**
- * @brief 将稠密图转成DOT语言格式, 写入指定文件
+ * @brief 将无权重图转成DOT语言格式, 写入指定文件
  *
  * @param dot_file_path dot文件路径
  * @param graph 指定图
