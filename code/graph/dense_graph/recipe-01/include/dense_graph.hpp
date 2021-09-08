@@ -94,7 +94,7 @@ public:
      *
      * @return 如果v和w邻接, 返回true, 否则返回false
      */
-    bool Edge(int v, int w) const 
+    bool HasEdge(int v, int w) const 
     { 
         return adj[v][w]; 
     }

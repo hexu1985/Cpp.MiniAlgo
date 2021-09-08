@@ -23,9 +23,9 @@ namespace mini_algo {
 class DenseGraph { 
 private:
     std::vector<std::vector<Edge*>> adj;  // 邻接矩阵
-    int v_cnt = 0;                              // 顶点数
-    int e_cnt = 0;                              // 边数
-    bool digraph = false;                       // 是否为有向图
+    int v_cnt = 0;                        // 顶点数
+    int e_cnt = 0;                        // 边数
+    bool digraph = false;                 // 是否为有向图
 
 public:
     /**
@@ -34,7 +34,7 @@ public:
      * @param v_cnt 图的顶点数
      * @param digraph 是否为有向图
      */
-    dense_graph(int V, bool digraph = false) :
+    DenseGraph(int V, bool digraph = false) :
         adj(V), v_cnt(V), e_cnt(0), digraph(digraph)
     { 
         for (int i = 0; i < v_cnt; i++)
@@ -96,7 +96,7 @@ public:
      *
      * @return 如果u和v邻接, 返回边的指针, 否则返回空指针
      */
-    Edge* Edge(int v, int w) const { return adj[v][w]; }
+    Edge* GetEdge(int v, int w) const { return adj[v][w]; }
 
     /**
      * @brief 获取指定顶点的邻接顶点的列表

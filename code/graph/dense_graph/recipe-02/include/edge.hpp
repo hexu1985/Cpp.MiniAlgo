@@ -46,6 +46,28 @@ struct Edge {
     }
 };
 
+/**
+ * @brief 获取指定图的边集
+ *
+ * @param graph 指定图
+ *
+ * @return 边集
+ */
+template <typename Graph>
+std::vector<Edge*> Edges(const Graph& graph)
+{
+    std::vector<Edge*> edges;
+    for (int v = 0; v < graph.V(); v++) {
+        for (auto e: graph.AdjList(v)) {
+            if (e->From(v)) {
+                edges.push_back(e);
+            }
+        }
+    }
+
+    return edges;
+}
+
 }   // namespace mini_algo
 
 #endif
