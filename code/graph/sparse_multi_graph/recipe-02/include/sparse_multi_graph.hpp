@@ -1,18 +1,18 @@
 /**
- * @file sparse_multi_graph.hpp
+ * @file weight/SparsMultiGraph.hpp
+ * @file sparse_graph.hpp
  * @brief 一个稀疏图实现, 基于邻接链表(支持平行边)
  * @author hexu_1985@sina.com
  * @version 1.0
- * @date 2019-06-24
+ * @date 2019-07-09
  *
- * @see C++算法: 图算法(第3版): 章节1.4
+ * @see C++算法: 图算法(第3版): 章节4.1
  */
-#ifndef MINI_ALGO_SPARSE_MUTLI_GRAPH_INC
-#define MINI_ALGO_SPARSE_MUTLI_GRAPH_INC
+#ifndef MINI_ALGO_SPARSE_MULTI_GRAPH_INC
+#define MINI_ALGO_SPARSE_MULTI_GRAPH_INC
 
-#include <tuple>
-#include <memory>
 #include <vector>
+#include <memory>
 #include <forward_list>
 #include <algorithm>
 #include "edge.hpp"
@@ -24,10 +24,10 @@ namespace mini_algo {
  */
 class SparseMultiGraph { 
 private:
-    std::vector<std::forward_list<int>> adj;  // 邻接链表数组
-    int v_cnt = 0;                            // 顶点数
-    int e_cnt = 0;                            // 边数
-    bool digraph = false;                     // 是否为有向图
+    std::vector<std::forward_list<Edge*>> adj; // 邻接链表数组
+    int v_cnt = 0;                             // 顶点数
+    int e_cnt = 0;                             // 边数
+    bool digraph = false;                      // 是否为有向图
 
 public:
     /**
@@ -67,11 +67,11 @@ public:
      *
      * @param e 要插入的边
      */
-    void Insert(Edge e)
+    void Insert(Edge* e)
     { 
-        int v = e.v, w = e.w;
-        adj[v].push_front(w);
-        if (!digraph) adj[w].push_front(v);
+        int v = e->v, w = e->w;
+        adj[v].push_front(e);
+        if (!digraph) adj[w].push_front(e);
         e_cnt++;
     } 
 
@@ -80,29 +80,38 @@ public:
      *
      * @param e 要删除的边
      */
-    void Remove(Edge e)
+    void Remove(Edge* e)
     {
-        int v = e.v, w = e.w;
-        int n = std::count(std::begin(adj[v]), std::end(adj[v]), w);
+        int v = e->v, w = e->w;
+        int n = std::count_if(std::begin(adj[v]),
+                    std::end(adj[v]), 
+                    [v, w](Edge* e){ return e->Other(v) == w;});
 
         if (n == 0) return;
 
         e_cnt-=n;
-        adj[v].remove(w);
+        adj[v].remove_if([v, w](Edge* e) { return e->Other(v) == w; });
 
-        if (!digraph) adj[w].remove(v);
+        if (!digraph)
+            adj[w].remove_if([v, w](Edge* e) { return (e->Other(w) == v); });
     } 
 
     /**
-     * @brief 判断边是否属于指定图
+     * @brief 判断两个顶点之间是否有直连边(两顶点是否邻接)
      *
-     * @param e 边
+     * @param u from顶点
+     * @param v to顶点
      *
-     * @return 如果边属于指定图, 返回true, 否则返回false
+     * @return 如果v和w邻接, 返回边的指针, 否则返回空指针
      */
-    bool HasEdge(int v, int w) const 
+    Edge* GetEdge(int v, int w) const
     {
-        return (std::find(std::begin(adj[v]), std::end(adj[v]), w) != std::end(adj[v]));
+        for (auto e: adj[v]) {
+            if (e->Other(v) == w) {
+                return e;
+            }
+        }
+        return nullptr;
     }
 
     /**
@@ -112,12 +121,12 @@ public:
      *
      * @return 邻接顶点的迭代器
      */
-    const std::forward_list<int>& AdjList(int v) const 
-    { 
-        return adj[v]; 
+    const std::forward_list<Edge*>& AdjList(int v) const
+    {
+        return adj[v];
     }
 };
 
 }   // namespace mini_algo
 
-#endif  // MINI_ALGO_SPARSE_MUTLI_GRAPH_INC
+#endif // MINI_ALGO_SPARSE_MULTI_GRAPH_INC
