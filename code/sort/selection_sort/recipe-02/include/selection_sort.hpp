@@ -3,7 +3,7 @@
  * @brief 选择排序算法
  * @author hexu_1985@sina.com
  * @version 1.0
- * @date 2020-03-17
+ * @date 2021-09-10
  *
  * @see 程序设计基础 原书第3版 9.2节 选择排序算法
  *
