@@ -1,6 +1,6 @@
 /**
- * @file graph_dot.hpp
- * @brief 将无权重图转成dot格式
+ * @file graph_dot_vlabel.hpp
+ * @brief 将无权重图转成dot格式，指定顶点名称
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-05-19
@@ -57,7 +57,7 @@ template <typename Graph, typename VLabelMap>
 std::string ToDotStr(const Graph& graph, const VLabelMap& vlabel_map)
 {
     std::ostringstream os;
-    WriteDot(os, graph);
+    WriteDot(os, graph, vlabel_map);
     return os.str();
 }
 

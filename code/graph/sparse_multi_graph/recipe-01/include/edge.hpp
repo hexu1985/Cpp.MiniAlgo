@@ -19,7 +19,7 @@ namespace mini_algo {
  */
 struct Edge {
     int v, w;
-    Edge(int v = -1, int w = -1): v(v), w(w) {}
+    Edge(int v, int w): v(v), w(w) {}
 };
 
 /**
