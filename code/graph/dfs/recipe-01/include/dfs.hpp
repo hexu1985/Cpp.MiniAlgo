@@ -34,10 +34,10 @@ public:
     {
         PreVisit(v);
 
-        // 把s标记为已探索
+        // 把v标记为已探索
         Visit(v);
 
-        // 遍历s的邻接列表
+        // 遍历v的邻接列表
         for (int w: graph_.AdjList(v)) {
             if (!IsVisited(w)) {
                 Explore(w);
