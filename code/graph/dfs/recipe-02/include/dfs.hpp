@@ -41,7 +41,7 @@ public:
         // 遍历e.w的邻接列表
         for (int t: graph_.AdjList(e.w)) {
             if (!IsVisited(t)) {
-                Explore(Edge(e.w,t));
+                Explore(Edge(e.w, t));
             }
         }
 
