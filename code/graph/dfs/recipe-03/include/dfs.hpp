@@ -54,7 +54,7 @@ public:
                 Visit(v);
 
                 // 遍历v的邻接列表
-                for (auto w: graph_.AdjList(v)) {
+                for (int w: graph_.AdjList(v)) {
                     // 把w添加("压入")到S的头部
                     S.Put(w);
                 }
