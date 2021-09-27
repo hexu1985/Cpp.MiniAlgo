@@ -40,7 +40,7 @@ public:
 
     void Explore(Edge e)
     {
-        // S := 一个堆栈数据结构，用s初始化
+        // S := 一个堆栈数据结构，用e初始化
         Stack S;
         S.Put(e);
 
@@ -49,7 +49,7 @@ public:
             // 从S的头部删除("弹出")边e
             e = S.Get();
 
-            // 如果v为未探索
+            // 如果e.w为未探索
             if (!IsVisited(e.w)) {
                 // 把e.w标注为已探索
                 Visit(e);
