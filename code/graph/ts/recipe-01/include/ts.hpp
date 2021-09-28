@@ -12,6 +12,7 @@
 
 #include <vector>
 #include <algorithm>
+#include "dfs.hpp"
 
 namespace mini_algo {
 
@@ -27,9 +28,12 @@ private:
     std::vector<int> f;    // 每个顶点的顺序
 
     using Base = DFS<Graph>;
+    using Base::G;
+    using Base::IsVisited;
+    using Base::Explore;
 
 public:
-    TS(const Graph& graph): Base(graph), cur_label(graph.V()) {}
+    TS(const Graph& graph): Base(graph), cur_label(graph.V()-1), f(graph.V(), -1) {}
 
     /**
      * @brief Topo-Sort main function
