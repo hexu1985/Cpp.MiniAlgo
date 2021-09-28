@@ -24,8 +24,8 @@ namespace mini_algo {
 template <typename Graph>
 class BFS {
 private:
-    const Graph& graph_;
-    std::vector<bool> visited_;
+    const Graph& G;
+    std::vector<bool> visited;
 
     struct Queue {
         std::queue<Edge> q;
@@ -35,7 +35,7 @@ private:
     };
 
 public:
-    BFS(const Graph& graph): graph_(graph), visited_(graph_.V(), false) {}
+    BFS(const Graph& graph): G(graph), visited(graph.V(), false) {}
 
     void Explore(Edge e)
     {
@@ -54,7 +54,7 @@ public:
                 Visit(e);
 
                 // 遍历e.w的邻接列表
-                for (int t: graph_.AdjList(e.w)) {
+                for (int t: G.AdjList(e.w)) {
                     // 把Edge(e.w, t)添加到Q的尾部
                     Q.Put(Edge(e.w, t));
                 }
@@ -64,12 +64,12 @@ public:
 
     virtual bool IsVisited(int v)
     {
-        return visited_[v];
+        return visited[v];
     }
 
     virtual void Visit(Edge e)
     {
-        visited_[e.w] = true;
+        visited[e.w] = true;
     }
 };
 

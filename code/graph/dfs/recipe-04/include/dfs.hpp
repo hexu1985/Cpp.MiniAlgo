@@ -25,8 +25,8 @@ namespace mini_algo {
 template <typename Graph>
 class DFS {
 private:
-    const Graph& graph_;
-    std::vector<bool> visited_;
+    const Graph& G;
+    std::vector<bool> visited;
 
     struct Stack {
         std::stack<Edge> s;
@@ -36,7 +36,7 @@ private:
     };
 
 public:
-    DFS(const Graph& graph): graph_(graph), visited_(graph_.V(), false) {}
+    DFS(const Graph& graph): G(graph), visited(graph.V(), false) {}
 
     void Explore(Edge e)
     {
@@ -55,7 +55,7 @@ public:
                 Visit(e);
 
                 // 遍历e.w的邻接列表
-                for (int t: graph_.AdjList(e.w)) {
+                for (int t: G.AdjList(e.w)) {
                     // 把Edge(e.w, t)添加("压入")到S的头部
                     S.Put(Edge(e.w, t));
                 }
@@ -65,12 +65,12 @@ public:
 
     virtual bool IsVisited(int v) 
     {
-        return visited_[v];
+        return visited[v];
     }
 
     virtual void Visit(Edge e) 
     {
-        visited_[e.w] = true;
+        visited[e.w] = true;
     }
 };
 

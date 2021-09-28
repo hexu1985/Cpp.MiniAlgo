@@ -24,11 +24,11 @@ namespace mini_algo {
 template <typename Graph>
 class DFS {
 private:
-    const Graph& graph_;
-    std::vector<bool> visited_;
+    const Graph& G;
+    std::vector<bool> visited;
 
 public:
-    DFS(const Graph& graph): graph_(graph), visited_(graph_.V(), false) {}
+    DFS(const Graph& graph): G(graph), visited(graph.V(), false) {}
 
     void Explore(int v)
     {
@@ -38,7 +38,7 @@ public:
         Visit(v);
 
         // 遍历v的邻接列表
-        for (int w: graph_.AdjList(v)) {
+        for (int w: G.AdjList(v)) {
             if (!IsVisited(w)) {
                 Explore(w);
             }
@@ -49,12 +49,12 @@ public:
 
     virtual bool IsVisited(int v) 
     {
-        return visited_[v];
+        return visited[v];
     }
 
     virtual void Visit(int v) 
     {
-        visited_[v] = true;
+        visited[v] = true;
     }
 
     virtual void PreVisit(int v) 
