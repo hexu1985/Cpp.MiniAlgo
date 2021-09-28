@@ -1,6 +1,6 @@
 /**
  * @file graph_dot_vlabel.hpp
- * @brief 将无权重图转成dot格式，指定顶点名称
+ * @brief 将无权重图打印成dot格式，指定顶点名称
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-05-19
@@ -20,36 +20,38 @@ namespace mini_algo {
 /**
  * @brief 将无权重图转成DOT语言格式, 写入指定输出流
  *
- * @param strm 输出流
+ * @param os 输出流
  * @param graph 指定图
+ * @param vlabel_map 顶点号到名称映射
  */
 template <typename charT, typename traits, typename Graph, typename VLabelMap>
-void WriteDot(std::basic_ostream<charT, traits>& strm, const Graph& graph, const VLabelMap& vlabel_map)
+void WriteDot(std::basic_ostream<charT, traits>& os, const Graph& graph, const VLabelMap& vlabel_map)
 {
     bool is_digraph = graph.Directed();
     std::string title = is_digraph ? "digraph G" : "graph G";
     std::string line_symbol = is_digraph ? "->" : "--";
 
-    strm << title << " {\n";
+    os << title << " {\n";
 
     // 打印点集
     for (int v = 0; v < graph.V(); v++) {
-        strm << "\t" << v 
+        os << "\t" << v 
             << " [label = " << vlabel_map[v] << "]" << ";\n";
     }
 
     // 打印边集
     for (auto e: Edges(graph)) {
-        strm << "\t" << e.v << line_symbol << e.w << ";\n";
+        os << "\t" << e.v << line_symbol << e.w << ";\n";
     }
 
-    strm << "}\n";
+    os << "}\n";
 }
 
 /**
  * @brief 将无权重图转成DOT语言格式字符串
  *
  * @param graph 指定图
+ * @param vlabel_map 顶点号到名称映射
  *
  * @return DOT语义格式字符串
  */
@@ -66,6 +68,7 @@ std::string ToDotStr(const Graph& graph, const VLabelMap& vlabel_map)
  *
  * @param dot_file_path dot文件路径
  * @param graph 指定图
+ * @param vlabel_map 顶点号到名称映射
  *
  * @return 如果写入成功, 返回true, 否则返回false
  */
