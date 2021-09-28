@@ -1,6 +1,6 @@
 #include <vector>
 #include "sparse_multi_graph.hpp"
-#include "graph_io.hpp"
+#include "graph_print.hpp"
 
 using namespace std;
 using namespace mini_algo;

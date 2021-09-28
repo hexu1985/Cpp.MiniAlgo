@@ -1,6 +1,6 @@
 #include <vector>
 #include "dense_graph.hpp"
-#include "graph_io.hpp"
+#include "graph_print.hpp"
 #include "dfs.hpp"
 
 using namespace std;
