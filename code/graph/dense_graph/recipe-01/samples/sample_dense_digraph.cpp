@@ -1,6 +1,6 @@
 #include <vector>
 #include "dense_graph.hpp"
-#include "graph_io.hpp"
+#include "graph_print.hpp"
 
 using namespace std;
 using namespace mini_algo;
