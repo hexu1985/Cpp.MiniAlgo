@@ -23,7 +23,7 @@ namespace mini_algo {
  */
 template <typename Graph>
 class DFS {
-private:
+protected:
     const Graph& G;
     std::vector<bool> visited;
 
