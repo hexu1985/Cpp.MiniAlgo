@@ -1,6 +1,6 @@
 /**
  * @file bfs.hpp
- * @brief 宽度优先的搜索(Breadth-first Search, BFS)算法
+ * @brief 广度优先的搜索(Breadth-first Search, BFS)算法
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-07-24

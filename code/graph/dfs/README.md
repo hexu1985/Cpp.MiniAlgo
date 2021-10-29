@@ -1,4 +1,4 @@
-###  DFS: 深度优先搜索(Depth-first Search)算法
+### DFS: 深度优先搜索(Depth-first Search)算法
 
 - [DFS递归版本](recipe-01/)
 - [DFS递归版本, Edge版](recipe-02/)
