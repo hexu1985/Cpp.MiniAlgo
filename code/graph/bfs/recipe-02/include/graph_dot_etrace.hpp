@@ -59,7 +59,7 @@ void WriteDot(std::basic_ostream<charT, traits>& strm, const Graph& graph, const
         if (index < 0) {
             strm << "\t" << e.v << line_symbol << e.w << ";\n";
         } else {
-            strm << "\t" << e.v << line_symbol << e.w << "[label = " << index+1 << ", penwidth=5];\n";
+            strm << "\t" << e.v << line_symbol << e.w << "[label=\"" << index+1 << "\", penwidth=5];\n";
         }
     }
 

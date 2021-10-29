@@ -54,7 +54,7 @@ void WriteDot(std::basic_ostream<charT, traits>& strm, const Graph& graph, const
     // 打印边集
     int index = 0;
     for (auto e: edges) {
-        strm << "\t" << e.v << line_symbol << e.w << "[label = " << ++index << "];\n";
+        strm << "\t" << e.v << line_symbol << e.w << "[label=\"" << ++index << "\"];\n";
     }
 
     strm << "}\n";
