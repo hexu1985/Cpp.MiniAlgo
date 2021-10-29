@@ -35,7 +35,7 @@ void WriteDot(std::basic_ostream<charT, traits>& strm, const Graph& graph, const
     // 打印点集
     for (int v = 0; v < graph.V(); v++) {
         strm << "\t" << v 
-            << " [label = " << vlabel_map[v] << "]" << ";\n";
+            << " [label=\"" << vlabel_map[v] << "\"]" << ";\n";
     }
 
     // 打印边集
