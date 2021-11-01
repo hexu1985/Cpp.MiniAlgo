@@ -5,12 +5,14 @@
  * @version 1.0
  * @date 2020-09-03
  *
- * @see 算法详解（卷2）图算法和数据结构：章节2.4.2
+ * @see C++算法：图算法：章节3.6，程序3.8 基于源点队列的拓扑排序
  */
 #ifndef MINI_ALGO_TS_INC
 #define MINI_ALGO_TS_INC
 
 #include <vector>
+#include <queue>
+#include <algorithm>
 
 namespace mini_algo {
 
@@ -21,23 +23,42 @@ namespace mini_algo {
  */
 template <typename Graph>
 class TS {
-private:
+protected:
     const Graph& G;
-    std::vector<bool> visited;
-    int cur_label;         // 记录顺序
-    std::vector<int> f;    // 顶点 -> 次序，次序值从0开始，例如f(1)表示为顶点1在拓扑排序中的次序。
+    std::vector<int> in;    // 每个顶点的入度
+    std::vector<int> ts;    // 按照拓扑顺序重排的顶点
+    std::vector<int> tsI;   // 顶点 -> 次序，次序值从0开始，例如tsI[1]表示为顶点1在拓扑排序中的次序
+
+    struct Queue {
+        std::queue<int> q;
+        void Put(int v) { q.push(v); }
+        int Get() { int v = q.front(); q.pop(); return v; }
+        bool Empty() { return q.empty(); }
+    };
 
 public:
-    TS(const Graph& graph): G(graph), visited(graph.V(), false), cur_label(graph.V()-1), f(graph.V(), -1) {}
+    TS(const Graph& graph): G(graph), in(graph.V(), 0), ts(graph.V(), -1), tsI(graph.V(), -1) {}
 
     /**
      * @brief Topo-Sort main function
      */
     void Search()
     {
+        Queue Q;
+        for (int v = 0; v < G.V(); v++) {   // 计算所有点的入度
+            for (auto t: G.AdjList(v)) {
+                in[t]++;
+            }
+        }
         for (int v = 0; v < G.V(); v++) {
-            if (!visited[v]) {
-                Explore(v);
+            if (in[v] == 0) Q.Put(v);
+        }
+        for (int j = 0; !Q.Empty(); j++) {
+            ts[j] = Q.Get(); tsI[ts[j]] = j;
+            for (auto t: G.AdjList(ts[j])) {
+                if (--in[t] == 0) {
+                    Q.Put(t);
+                }
             }
         }
     }
@@ -45,27 +66,11 @@ public:
     /**
      * @brief 返回Topo-Sort的顶点索引数组
      *
-     * @return 顶点索引数组，数组下标为顶点，值为在拓扑排序中的顺序
+     * @return 顶点索引数组，数组下标为顶点，值为在拓扑排序中的序号
      */
-    std::vector<int> Index()
+    std::vector<int> Index() const
     {
-        return f;
-    }
-
-private:
-    void Explore(int v)
-    {
-        visited[v] = true;
-
-        // 遍历v的邻接列表
-        for (int w: G.AdjList(v)) {
-            if (!visited[w]) {
-                Explore(w);
-            }
-        }
-
-        f[v] = cur_label;           // s的位置符合顺序
-        cur_label = cur_label-1;    // 从右向左进行操作
+        return tsI;
     }
 };
 

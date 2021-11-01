@@ -11,7 +11,6 @@
 #define MINI_ALGO_TS_INC
 
 #include <vector>
-#include "dfs.hpp"
 
 namespace mini_algo {
 
@@ -21,18 +20,15 @@ namespace mini_algo {
  * @tparam Graph 图类型
  */
 template <typename Graph>
-class TS: public DFS<Graph> {
+class TS {
 private:
+    const Graph& G;
+    std::vector<bool> visited;
     int cur_label;         // 记录顺序
     std::vector<int> f;    // 顶点 -> 次序，次序值从0开始，例如f(1)表示为顶点1在拓扑排序中的次序。
 
-    using Base = DFS<Graph>;
-    using Base::G;
-    using Base::IsVisited;
-    using Base::Explore;
-
 public:
-    TS(const Graph& graph): Base(graph), cur_label(graph.V()-1), f(graph.V(), -1) {}
+    TS(const Graph& graph): G(graph), visited(graph.V(), false), cur_label(graph.V()-1), f(graph.V(), -1) {}
 
     /**
      * @brief Topo-Sort main function
@@ -40,7 +36,7 @@ public:
     void Search()
     {
         for (int v = 0; v < G.V(); v++) {
-            if (!IsVisited(v)) {
+            if (!visited[v]) {
                 Explore(v);
             }
         }
@@ -57,8 +53,17 @@ public:
     }
 
 private:
-    void PostVisit(int v) override
+    void Explore(int v)
     {
+        visited[v] = true;
+
+        // 遍历v的邻接列表
+        for (int w: G.AdjList(v)) {
+            if (!visited[w]) {
+                Explore(w);
+            }
+        }
+
         f[v] = cur_label;           // s的位置符合顺序
         cur_label = cur_label-1;    // 从右向左进行操作
     }
