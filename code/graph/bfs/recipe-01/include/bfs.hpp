@@ -55,8 +55,11 @@ public:
 
                 // 遍历v的邻接列表
                 for (int w: G.AdjList(v)) {
-                    // 把w添加到Q的尾部
-                    Q.Put(w);
+                    // 如果w为未探索
+                    if (!IsVisited(w)) {
+                        // 把w添加到Q的尾部
+                        Q.Put(w);
+                    }
                 }
             }
         }

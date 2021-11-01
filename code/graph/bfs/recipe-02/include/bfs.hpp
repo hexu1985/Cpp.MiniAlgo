@@ -55,8 +55,11 @@ public:
 
                 // 遍历e.w的邻接列表
                 for (int t: G.AdjList(e.w)) {
-                    // 把Edge(e.w, t)添加到Q的尾部
-                    Q.Put(Edge(e.w, t));
+                    // 如果t为未探索
+                    if (!IsVisited(t)) { 
+                        // 把Edge(e.w, t)添加到Q的尾部
+                        Q.Put(Edge(e.w, t));
+                    }
                 }
             }
         }
