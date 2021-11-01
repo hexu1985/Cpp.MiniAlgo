@@ -11,7 +11,6 @@
 #define MINI_ALGO_TS_INC
 
 #include <vector>
-#include <algorithm>
 #include "dfs.hpp"
 
 namespace mini_algo {
@@ -25,7 +24,7 @@ template <typename Graph>
 class TS: public DFS<Graph> {
 private:
     int cur_label;         // 记录顺序
-    std::vector<int> f;    // 每个顶点的顺序
+    std::vector<int> f;    // 顶点 -> 次序，次序值从0开始，例如f(1)表示为顶点1在拓扑排序中的次序。
 
     using Base = DFS<Graph>;
     using Base::G;
@@ -48,9 +47,9 @@ public:
     }
 
     /**
-     * @brief 返回Topo-Sort的重新编号数组
+     * @brief 返回Topo-Sort的顶点索引数组
      *
-     * @return 重新编号数组，数组下标为顶点编号，值为在拓扑排序中的顺序
+     * @return 顶点索引数组，数组下标为顶点，值为在拓扑排序中的顺序
      */
     std::vector<int> Index()
     {
