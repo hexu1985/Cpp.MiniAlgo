@@ -29,10 +29,11 @@ protected:
     std::vector<int> ts;    // 按照拓扑顺序重排的顶点
     std::vector<int> tsI;   // 顶点 -> 次序，次序值从0开始，例如tsI[1]表示为顶点1在拓扑排序中的次序
 
+    template <typename T>
     struct Queue {
-        std::queue<int> q;
-        void Put(int v) { q.push(v); }
-        int Get() { int v = q.front(); q.pop(); return v; }
+        std::queue<T> q;
+        void Put(T elem) { q.push(elem); }
+        T Get() { T elem = q.front(); q.pop(); return elem; }
         bool Empty() { return q.empty(); }
     };
 
@@ -44,7 +45,7 @@ public:
      */
     void Search()
     {
-        Queue Q;
+        Queue<int> Q;
         for (int v = 0; v < G.V(); v++) {   // 计算所有点的入度
             for (auto t: G.AdjList(v)) {
                 in[t]++;

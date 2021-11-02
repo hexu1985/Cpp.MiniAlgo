@@ -27,10 +27,11 @@ protected:
     const Graph& G;
     std::vector<bool> visited;
 
+    template <typename T>
     struct Queue {
-        std::queue<int> q;
-        void Put(int v) { q.push(v); }
-        int Get() { int v = q.front(); q.pop(); return v; }
+        std::queue<T> q;
+        void Put(T elem) { q.push(elem); }
+        T Get() { T elem = q.front(); q.pop(); return elem; }
         bool Empty() { return q.empty(); }
     };
 
@@ -40,7 +41,7 @@ public:
     void Explore(int s)
     {
         // Q := 一个队列数据结构，用s进行初始化
-        Queue Q;
+        Queue<int> Q;
         Q.Put(s);
 
         // 只要队列不为空，就一直处理
