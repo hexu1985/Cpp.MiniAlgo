@@ -5,7 +5,7 @@
  * @version 1.0
  * @date 2021-09-14
  *
- * @see 程序设计基础 原书第3版 9.1节 冒泡排序算法
+ * @see 程序设计基础 原书第3版 9.3节 插入排序算法
  *
  */
 #ifndef MINI_ALGO_INSERTION_SORT_INC
@@ -15,20 +15,8 @@
 
 namespace mini_algo {
 
-template <typename T>
-void Swap(T& a, T& b)
-{
-    // 临时存储的局部变量
-    T temp;
-
-    // 交换a和b中的值
-    temp = a;
-    a = b;
-    b = temp;
-}
-
 /**
- * @brief 选择排序指定数组
+ * @brief 插入排序指定数组
  *
  * @param array[] 数组首地址
  * @param arraySize 数组元素格式

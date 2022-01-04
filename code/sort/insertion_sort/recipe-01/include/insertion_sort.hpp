@@ -17,7 +17,7 @@
 namespace mini_algo {
 
 /**
- * @brief 选择排序指定数组
+ * @brief 插入排序指定数组
  *
  * @tparam T    数组元素类型
  * @param arr[] 数组首地址
