@@ -20,6 +20,11 @@ private:
 public:
     List(): head(NULL) {}
 
+    ~List()
+    {
+        assert(head == NULL);
+    }
+
     static Link NewNode() { return new Node(); }
     static Link NewNode(const Item& item)
     {
@@ -85,6 +90,22 @@ public:
         } else {
             t->next = head->next;
             head = t;
+        }
+    }
+
+    /**
+     * @brief 删除链表头的节点
+     *
+     * @return 返回头节点
+     */
+    Link RemoveHead()
+    {
+        if (head == NULL) {
+            return NULL;
+        } else {
+            Link t = head;
+            head->next = t->next;
+            return t;
         }
     }
 
