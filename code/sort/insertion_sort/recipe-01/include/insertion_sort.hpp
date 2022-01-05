@@ -29,53 +29,27 @@ void InsertionSort(T arr[], int n)
     int i, j;
     T target;
 
-    // 将arr[i]放到子表arr[0] ... arr[i-1], 1 <= i < n中,
-    // 使之处于正确的位置
+    // place arr[i] into the sublist
+    //   arr[0] ... arr[i-1], 1 <= i < n,
+    // so it is in the correct position
     for (i = 1; i < n; i++)
     {
-        // 下标j从arr[i]向下扫描表, 查找放置target的正确位置. 将它赋值给arr[j]
+        // index j scans down list from arr[i] looking for
+        // correct position to locate target. assigns it to
+        // arr[j]
         j = i;
         target = arr[i];
-        // 只要target < arr[j-1], 而且没有遇到表的开始, 就通过向下扫描定位插入点
+        // locate insertion point by scanning downward as long
+        // as target < arr[j-1] and we have not encountered the
+        // beginning of the list
         while (j > 0 && target < arr[j-1])
         {
-            // 将元素在表中向上移动, 留出插入的空间
+            // shift elements up list to make room for insertion
             arr[j] = arr[j-1];
             j--;
         }
-        // 找到位置; 插入目标
+        // the location is found; insert target
         arr[j] = target;
-    }
-}
-
-/**
- * @brief 选择排序指定向量
- *
- * @tparam T 向量元素类型
- * @param v  向量引用
- */
-template <typename T>
-void InsertionSort(std::vector<T>& v)
-{
-    int i, j, n = v.size();
-    T target;
-
-    // 将v[i]放到子表v[0] ... v[i-1], 1 <= i < n中,
-    // 使之处于正确的位置
-    for (i = 1; i < n; i++)
-    {
-        // 下标j从v[i]向下扫描表, 查找放置target的正确位置. 将它赋值给v[j]
-        j = i;
-        target = v[i];
-        // 只要target < v[j-1], 而且没有遇到表的开始, 就通过向下扫描定位插入点
-        while (j > 0 && target < v[j-1])
-        {
-            // 将元素在表中向上移动, 留出插入的空间
-            v[j] = v[j-1];
-            j--;
-        }
-        // 找到位置; 插入目标
-        v[j] = target;
     }
 }
 
