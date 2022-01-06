@@ -110,6 +110,38 @@ public:
     }
 
     /**
+     * @brief 删除第一个满足pred谓词的节点
+     *
+     * @param pred 谓词判断
+     *
+     * @return 返回被删除节点的指针
+     */
+    template <typename UnaryPredicate>
+    Link RemoveIf(UnaryPredicate pred)
+    {
+        Link t;
+        Link *prev;
+        for (prev = &head, t = head; t && !pred(t->item); 
+             prev = &t, t = t->next) {
+            ;
+        }
+        if (t) *prev = t->next;
+        return t;
+    }
+
+    /**
+     * @brief 删除第一个等于目标值的节点
+     *
+     * @param target 目标值
+     *
+     * @return 被删除的节点指针
+     */
+    Link Remove(const Item& target)
+    {
+        return RemoveIf([&target](const Item& item) { return item == target; });
+    }
+
+    /**
      * @brief 循环遍历列表
      *
      * @param fn 函数对象，处理节点元素
