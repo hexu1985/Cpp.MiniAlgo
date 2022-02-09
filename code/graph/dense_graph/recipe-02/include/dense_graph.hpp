@@ -91,10 +91,10 @@ public:
     /**
      * @brief 判断两个顶点之间是否有直连边(两顶点是否邻接)
      *
-     * @param u from顶点
-     * @param v to顶点
+     * @param v from顶点
+     * @param w to顶点
      *
-     * @return 如果u和v邻接, 返回边的指针, 否则返回空指针
+     * @return 如果v和w邻接, 返回边的指针, 否则返回空指针
      */
     Edge* GetEdge(int v, int w) const { return adj[v][w]; }
 
